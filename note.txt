@@ -1,0 +1,6 @@
+variables de decision: lo que yo puedo elegir
+restricciones: no negatividad
+tamaño de espacio de busqueda: cuantos puede generar tu random en cada (uno 20 x 5 - Javier) (k-elevado a la 5 -> salto de 1, dos valores nada mas es 2⁵ - Rossete)
+
+que en el mismo programa las mejores me sale en * y las peroes con p
+
