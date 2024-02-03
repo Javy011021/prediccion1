@@ -3,7 +3,7 @@ import numpy as np
 
 data = {'day': 23, '5pastDays': [45,20,38,25,32]}
 
-def alt_function(min: float = 0, max: float = 1, intv: float = 0.2, num_vals: int = 5):
+def alt_function(min: float = 0, max: float = 1, num_vals: int = 5):
     return [float(f'{random.uniform(min, max):.2f}') for _ in range(num_vals)]
 
 
@@ -28,7 +28,6 @@ def gradient(currentDay, pastDays, vals):
     return gradient_vals
 
 def gradient_descent(currentDay, pastDays, vals, learning_rate=0.0001, num_iterations=1000):
-    m = len(pastDays)
     vals = np.array(vals)
     
     for _ in range(num_iterations):
