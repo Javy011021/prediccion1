@@ -3,8 +3,8 @@ import numpy as np
 
 data = {'day': 23, '5pastDays': [45,20,38,25,32]}
 
-def alt_function(min: int = 0, max: int = 1, intv: int = 0.2, num_vals: int = 5):
-    return [round(random.uniform(min, max) / intv) * intv for _ in range(num_vals)]
+def alt_function(min: float = 0, max: float = 1, intv: float = 0.2, num_vals: int = 5):
+    return [float(f'{random.uniform(min, max):.2f}') for _ in range(num_vals)]
 
 
 def obj_function( currentDay: int, pastDays: [], vals: []):
