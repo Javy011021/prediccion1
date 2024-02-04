@@ -36,6 +36,15 @@ def gradient_descent(currentDay, pastDays, vals, learning_rate=0.0001, num_itera
     
     return vals.tolist()
 
+def heuristica_variabilidad(lluvia_real, vals_generados):
+    # Calcular la variabilidad de la lluvia
+    variabilidad_lluvia = max(lluvia_real) - min(lluvia_real)
+
+    # Asignar valores de K en función de la variabilidad
+    k_asignados = [val * variabilidad_lluvia for val in vals_generados]
+
+    return k_asignados
+
 vals = alt_function()
 print("Valores originales: ", vals)
 
