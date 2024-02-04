@@ -45,6 +45,13 @@ def heuristica_variabilidad(lluvia_real, vals_generados):
 
     return k_asignados
 
+def heuristica_ordena_k(lluvia_real, vals_generados):
+    # Ordenar los datos de lluvia y asignar los valores generados en el mismo orden
+    lluvia_ordenada = sorted(lluvia_real)
+    k_asignados = sorted(vals_generados)
+
+    return k_asignados
+
 vals = alt_function()
 print("Valores originales: ", vals)
 
