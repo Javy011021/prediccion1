@@ -1,7 +1,7 @@
 import random
 import numpy as np
 
-ITERATIONS = 100
+ITERATIONS = 20
 DAYS = [23, 24, 25]
 PAST_DAYS = [[45,20,38,25,32],[46,21,39,26,33], [47,22,40,27,34]]
 
@@ -35,14 +35,29 @@ def best_alt_solution():
     return [solution]
         
 
+#socion que empece a hacer
+def h_solution():
+    alt = alt_function()
+    alt = sorted(alt)
+    dif = [[0,0],[1,0],[2,0],[3,0],[4,0]]
+
+
+    for i in range(len(PAST_DAYS)):
+        for j in range(len(DAYS)):
+            dif[j][1] += abs(DAYS[j] - PAST_DAYS[i][j])
+    
+    dif_ordenada = sorted(dif, key=lambda x: x[1])
+    print(dif_ordenada)
     
 
 def test ():
     l = alt_function()
-    r = obj_function(l)
+    r = obj_function([0.02, 0.8, 1.5, 0.5, 0.92])
     print(f'valores: {l}')
     print(f'error: {r}')
 
 
 best_alt_solution()
+# test()
+# h_solution()
 
