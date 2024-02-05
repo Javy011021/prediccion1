@@ -35,20 +35,29 @@ def best_alt_solution():
     return [solution]
         
 
-#socion que empece a hacer
-def h_solution():
-    alt = alt_function()
-    alt = sorted(alt)
-    dif = [[0,0],[1,0],[2,0],[3,0],[4,0]]
 
+def h_solution(iterations: int = 1000):
+    current_solution = alt_function()
+    current_solution = sorted(current_solution)
+    current_error = obj_function(current_solution)
 
-    for i in range(len(PAST_DAYS)):
-        for j in range(len(DAYS)):
-            dif[j][1] += abs(DAYS[j] - PAST_DAYS[i][j])
-    
-    dif_ordenada = sorted(dif, key=lambda x: x[1])
-    print(dif_ordenada)
-    
+    for _ in range(iterations):
+        neighbor_solution = current_solution.copy()
+        random_index = random.randint(0, len(neighbor_solution) - 1)
+        change = random.uniform(-0.1, 0.1)
+
+        # Asegurar que el cambio no haga que el valor sea negativo
+        if neighbor_solution[random_index] + change >= 0:
+            neighbor_solution[random_index] += change
+            neighbor_solution = sorted(neighbor_solution)
+            neighbor_error = obj_function(neighbor_solution)
+
+            if neighbor_error < current_error:
+                current_solution = neighbor_solution
+                current_error = neighbor_error
+
+    print(f'Mejor solución: {current_solution} \t Error: {current_error}')
+    return current_solution
 
 def test ():
     l = alt_function()
@@ -59,5 +68,5 @@ def test ():
 
 best_alt_solution()
 # test()
-# h_solution()
+h_solution()
 
