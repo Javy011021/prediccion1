@@ -63,8 +63,10 @@ def random_change(solution, MIN_VALUE=0, MAX_VALUE=10,):
     solution[random_index] = random_value(min=MIN_VALUE, max=MAX_VALUE)
     return solution
 
-def not_random_change(solution):
-    pass
+def not_random_change(solution, interval=0.1):
+    changed_solution = [val + interval for val in solution]
+    return changed_solution
+
 
 # each value is chosen randomly from any of the solutions
 def random_combination(solution1, solution2):
