@@ -58,7 +58,7 @@ def heuristic_solution(iterations: int = 10000):
 
 
 # the value of a random position is randomly changed
-def random_change(solution, MIN_VALUE=0, MAX_VALUE=10,): 
+def random_change(solution, MIN_VALUE=0, MAX_VALUE=1): 
     random_index = random.randint(0, len(solution) - 1)
     solution[random_index] = random_value(min=MIN_VALUE, max=MAX_VALUE)
     return solution
