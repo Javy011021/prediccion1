@@ -6,7 +6,9 @@ from MHPython.operators import uniform_crossover
 ITERATIONS = 20
 DAYS = [23, 24, 25]
 PAST_DAYS = [[45,20,38,25,32],[46,21,39,26,33], [47,22,40,27,34]]
-STEP = 0.1
+STEP = 0.3
+MIN_VALUE=-1
+MAX_VALUE=1
 
 Presentation  = 'Rain Problem'
 def present_problem():
@@ -20,7 +22,7 @@ def present_problem():
 def exact_add(*nbs):
     return float(sum([Decimal(str(nb)) for nb in nbs]))
 
-def random_value(min: float = 0, max: float = 1, intv: int = STEP):
+def random_value(min: float = MIN_VALUE, max: float = MAX_VALUE, intv: int = STEP):
     return float(f'{round(random.uniform(min, max) / intv) * intv:.2f}')
     
 def obj_function(vals: list):
@@ -32,7 +34,7 @@ def obj_function(vals: list):
         error += abs((DAYS[i]-predict))
     return error
 
-def random_solution(min: float = 0, max: float = 1, intv: int = STEP, num_vals: int = 5):
+def random_solution(min: float = MIN_VALUE, max: float = MAX_VALUE, intv: int = STEP, num_vals: int = 5):
     return [random_value(min=min, max=max, intv=intv) for _ in range(num_vals)]
 
 def heuristic_solution(iterations: int = 10000):
@@ -58,7 +60,7 @@ def heuristic_solution(iterations: int = 10000):
 
 
 # the value of a random position is randomly changed
-def random_change(solution, MIN_VALUE=0, MAX_VALUE=1): 
+def random_change(solution, MIN_VALUE=MIN_VALUE, MAX_VALUE=MAX_VALUE): 
     random_index = random.randint(0, len(solution) - 1)
     solution[random_index] = random_value(min=MIN_VALUE, max=MAX_VALUE)
     return solution

@@ -30,48 +30,48 @@ CRITERION = 'TA'             # 'TA': Treshold accepting, 'RRT': Record-to-Record
 TRESHOLD = 1                 # For TA and RRT
 TRIALS_BEFORE_RESTART = 50   # For Local Search, trials before restart the search
 '''
+def metaheuristic_test():
+    parameters = {'ECHO': False, 'MAX_TRIALS': 1000, 'OBJECTIVE_MAX':False, 'GENERATION_SIZE':20, 'BEST_REFERENCES':10, 'GENERATIONAL': False, 'RUNS':5}
+    set_parameters(parameters)
 
-parameters = {'ECHO': False, 'MAX_TRIALS': 1000, 'OBJECTIVE_MAX':False, 'GENERATION_SIZE':10, 'BEST_REFERENCES':4, 'GENERATIONAL': False, 'RUNS':5}
-set_parameters(parameters)
+    print('\nExecute Random Search')
+    solRS = mh_RandomSearch()
+    print('\nSolutions obtained by Random Search')
+    print(solRS)
 
-print('\nExecute Random Search')
-solRS = mh_RandomSearch()
-print('\nSolutions obtained by Random Search')
-print(solRS)
+    print('\n---------------------------------------------------------------------------------------------\n')
+    print('Execute Random Walk')
+    solRW = mh_RandomWalk()
+    print('\nSolutions obtained by Random Walk')
+    print(solRW)
 
-print('\n---------------------------------------------------------------------------------------------\n')
-print('Execute Random Walk')
-solRW = mh_RandomWalk()
-print('\nSolutions obtained by Random Walk')
-print(solRW)
+    print('\n---------------------------------------------------------------------------------------------\n')
+    print('Execute Hill Climbing')
+    solHC = mh_HillClimbing()
+    print('\nSolutions obtained by Hill Climbing')
+    print(solHC)
 
-print('\n---------------------------------------------------------------------------------------------\n')
-print('Execute Hill Climbing')
-solHC = mh_HillClimbing()
-print('\nSolutions obtained by Hill Climbing')
-print(solHC)
+    set_parameters(parameters)
 
+    print('\n---------------------------------------------------------------------------------------------\n')
+    print('Execute Generic Algorithm')
+    solGA = mh_GeneticAlgorithm()
+    print('\nSolution obtained by Generic Algorithm')
+    print(solGA)
 
-parameters = {'ECHO': False, 'MAX_TRIALS': 100, 'OBJECTIVE_MAX':False, 'GENERATION_SIZE':10, 'BEST_REFERENCES':4, 'GENERATIONAL': False, 'RUNS':5}
-set_parameters(parameters)
-
-print('\n---------------------------------------------------------------------------------------------\n')
-print('Execute Generic Algorithm')
-solGA = mh_GeneticAlgorithm()
-print('\nSolution obtained by Generic Algorithm')
-print(solGA)
-
-print('\n---------------------------------------------------------------------------------------------\n')
-print('Execute Evolution Strategy')
-solES = mh_EvolutionStrategy()
-print('\nSolution obtained by Evolution Strategy')
-print(solES)
+    print('\n---------------------------------------------------------------------------------------------\n')
+    print('Execute Evolution Strategy')
+    solES = mh_EvolutionStrategy()
+    print('\nSolution obtained by Evolution Strategy')
+    print(solES)
 
 
-print('\n\n')
-print('Compare the results of the four search procedures')
-print('RS:',solRS, 'with evalution',obj_function(solRS))
-print('RW:',solRW, 'with evalution',obj_function(solRW))
-print('HC:',solHC, 'with evalution',obj_function(solHC))
-print('GA:', solGA, 'with evalution',obj_function(solGA))
-print('ES:', solES, 'with evalution',obj_function(solES))
+    print('\n\n')
+    print('Compare the results of the four search procedures')
+    print('RS:',solRS, 'with evalution',obj_function(solRS))
+    print('RW:',solRW, 'with evalution',obj_function(solRW))
+    print('HC:',solHC, 'with evalution',obj_function(solHC))
+    print('GA:', solGA, 'with evalution',obj_function(solGA))
+    print('ES:', solES, 'with evalution',obj_function(solES))
+    
+metaheuristic_test()
