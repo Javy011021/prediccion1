@@ -2,8 +2,7 @@ from MHPython.MH240210 import set_problem, \
                      set_default_parameters, print_parameters, set_parameters, \
                      print_solution, systematicSearch, \
                      mh_RandomSearch, mh_RandomWalk, \
-                     mh_HillClimbing, mh_LocalSearch, mh_GeneticAlgorithm
-                    #  mh_EvolutionStrategy,  \
+                     mh_HillClimbing, mh_LocalSearch, mh_GeneticAlgorithm, mh_EvolutionStrategy
                     #  execute_mh, compare_search_procedures, print_results
                     
 from rain_problem import present_problem, obj_function, random_solution, heuristic_solution, \
@@ -32,7 +31,7 @@ TRESHOLD = 1                 # For TA and RRT
 TRIALS_BEFORE_RESTART = 50   # For Local Search, trials before restart the search
 '''
 
-parameters = {'ECHO': True, 'MAX_TRIALS': 10, 'OBJECTIVE_MAX':False, 'GENERATION_SIZE':10, 'BEST_REFERENCES':4, 'GENERATIONAL': False}
+parameters = {'ECHO': True, 'MAX_TRIALS': 1000, 'OBJECTIVE_MAX':False, 'GENERATION_SIZE':10, 'BEST_REFERENCES':4, 'GENERATIONAL': False, 'RUNS':5}
 set_parameters(parameters)
 
 print('\nExecute Random Search')
@@ -58,9 +57,17 @@ solGA = mh_GeneticAlgorithm()
 print('\nSolution obtained by Generic Algorithm')
 print(solGA)
 
+print('\n---------------------------------------------------------------------------------------------\n')
+print('Execute Evolution Strategy')
+solES = mh_EvolutionStrategy()
+print('\nSolution obtained by Evolution Strategy')
+print(solES)
+
+
 print('\n\n')
 print('Compare the results of the four search procedures')
 print('RS:',solRS, 'with evalution',obj_function(solRS))
 print('RW:',solRW, 'with evalution',obj_function(solRW))
 print('HC:',solHC, 'with evalution',obj_function(solHC))
 print('GA:', solGA, 'with evalution',obj_function(solGA))
+print('ES:', solES, 'with evalution',obj_function(solES))
