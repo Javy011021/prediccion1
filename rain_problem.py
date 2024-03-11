@@ -6,7 +6,7 @@ from MHPython.operators import uniform_crossover
 ITERATIONS = 20
 DAYS = [23, 24, 25]
 PAST_DAYS = [[45,20,38,25,32],[46,21,39,26,33], [47,22,40,27,34]]
-STEP = 0.2
+STEP = 0.1
 
 Presentation  = 'Rain Problem'
 def present_problem():
