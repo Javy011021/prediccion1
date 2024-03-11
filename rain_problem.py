@@ -6,7 +6,7 @@ from MHPython.operators import uniform_crossover
 ITERATIONS = 20
 DAYS = [23, 24, 25]
 PAST_DAYS = [[45,20,38,25,32],[46,21,39,26,33], [47,22,40,27,34]]
-INTERVAL = 0.2
+STEP = 0.1
 
 Presentation  = 'Rain Problem'
 def present_problem():
@@ -20,7 +20,7 @@ def present_problem():
 def exact_add(*nbs):
     return float(sum([Decimal(str(nb)) for nb in nbs]))
 
-def random_value(min: float = 0, max: float = 1, intv: int = INTERVAL):
+def random_value(min: float = 0, max: float = 1, intv: int = STEP):
     return float(f'{round(random.uniform(min, max) / intv) * intv:.2f}')
     
 def obj_function(vals: list):
@@ -32,7 +32,7 @@ def obj_function(vals: list):
         error += abs((DAYS[i]-predict))
     return error
 
-def random_solution(min: float = 0, max: float = 1, intv: int = INTERVAL, num_vals: int = 5):
+def random_solution(min: float = 0, max: float = 1, intv: int = STEP, num_vals: int = 5):
     return [random_value(min=min, max=max, intv=intv) for _ in range(num_vals)]
 
 def heuristic_solution(iterations: int = 10000):
@@ -43,7 +43,7 @@ def heuristic_solution(iterations: int = 10000):
     for _ in range(iterations):
         neighbor_solution = current_solution.copy()
         random_index = random.randint(0, len(neighbor_solution) - 1)
-        change = random.choice([INTERVAL*-1,INTERVAL])
+        change = random.choice([STEP*-1,STEP])
 
         if neighbor_solution[random_index] + change >= 0:
             neighbor_solution[random_index] = exact_add(neighbor_solution[random_index], change)
