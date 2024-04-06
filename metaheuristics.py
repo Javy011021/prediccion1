@@ -31,7 +31,7 @@ TRESHOLD = 1                 # For TA and RRT
 TRIALS_BEFORE_RESTART = 50   # For Local Search, trials before restart the search
 '''
 def metaheuristic_test():
-    parameters = {'ECHO': False, 'MAX_TRIALS': 1000, 'OBJECTIVE_MAX':False, 'GENERATION_SIZE':20, 'BEST_REFERENCES':10, 'GENERATIONAL': False, 'RUNS':5}
+    parameters = {'ECHO': True, 'MAX_TRIALS': 10000, 'OBJECTIVE_MAX':False, 'GENERATION_SIZE':20, 'BEST_REFERENCES':10, 'GENERATIONAL': False, 'RUNS':10}
     set_parameters(parameters)
 
     print('\nExecute Random Search')
@@ -50,9 +50,6 @@ def metaheuristic_test():
     solHC = mh_HillClimbing()
     print('\nSolutions obtained by Hill Climbing')
     print(solHC)
-
-    parameters = {'ECHO': False, 'MAX_TRIALS': 100, 'OBJECTIVE_MAX':False, 'GENERATION_SIZE':10, 'BEST_REFERENCES':4, 'GENERATIONAL': False, 'RUNS':5}
-    set_parameters(parameters)
 
     print('\n---------------------------------------------------------------------------------------------\n')
     print('Execute Generic Algorithm')

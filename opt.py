@@ -51,3 +51,5 @@ error = np.abs(sum_products_optimal - np.array(DAYS))
 
 print("Error asociado con los coeficientes óptimos:", error)
 
+
+print('Real error', objective_function(optimal_coefs))

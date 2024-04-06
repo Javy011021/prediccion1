@@ -1,7 +1,6 @@
 import random
-import numpy as np
-from decimal import Decimal
 from MHPython.operators import uniform_crossover
+from problem_operators import change_one, exact_add, random_value, reverse_mutation
 
 ITERATIONS = 20
 DAYS = [18.38, 45.74, 47.88, 19.19, 32.81, 39.32, 20.88, 27.97, 34.59, 3.7]
@@ -18,7 +17,7 @@ PAST_DAYS = [
     [21.04, 41.36, 48.63, 25.3, 16.5],
     [12.77, 30.26, 3.46, 16.65, 13.98],
 ]
-STEP = 0.1
+STEP = 0.01
 MIN_VALUE=-1
 MAX_VALUE=1
 
@@ -30,12 +29,6 @@ def present_problem():
     # print(f'Profits and sizes of the items = {prof_size}')
     print('---------------------------------------------------------------------------------------------')
     
-
-def exact_add(*nbs):
-    return float(sum([Decimal(str(nb)) for nb in nbs]))
-
-def random_value(min: float = MIN_VALUE, max: float = MAX_VALUE, intv: int = STEP):
-    return float(f'{round(random.uniform(min, max) / intv) * intv:.2f}')
     
 def obj_function(vals: list):
     error = 0
@@ -73,9 +66,11 @@ def heuristic_solution(iterations: int = 10000):
 
 # the value of a random position is randomly changed
 def random_change(solution, MIN_VALUE=MIN_VALUE, MAX_VALUE=MAX_VALUE): 
-    random_index = random.randint(0, len(solution) - 1)
-    solution[random_index] = random_value(min=MIN_VALUE, max=MAX_VALUE)
-    return solution
+    random_no = random.random()
+    if(random_no > 0.50):
+        return change_one(solution, MIN_VALUE=MIN_VALUE, MAX_VALUE=MAX_VALUE)
+    else:
+        return reverse_mutation(solution)
 
 def not_random_change(solution, interval=0.1):
     changed_solution = [val + interval for val in solution]
@@ -84,8 +79,10 @@ def not_random_change(solution, interval=0.1):
 
 # each value is chosen randomly from any of the solutions
 def random_combination(solution1, solution2):
+    # random_no = random.random()
+    # if(random_no > 0.50):
     return uniform_crossover(solution1, solution2)
-
+    # else:
 
 #Test Functions
 def test ():
