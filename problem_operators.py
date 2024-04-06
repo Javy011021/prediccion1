@@ -15,10 +15,8 @@ def get_decimal_digits(number):
 
 def round_to_nearest_multiple(number, multiple=STEP, min_value=MIN_VALUE, max_value=MAX_VALUE):
     rounded_num = round(number / multiple) * multiple
-    
     if min_value is not None and rounded_num < min_value:
         while rounded_num < min_value:
-            print(rounded_num)
             rounded_num += multiple
     
     if max_value is not None and rounded_num > max_value:
@@ -51,20 +49,25 @@ def reverse_mutation(solution):
 
 # MUTATION. The value of a random position  por la normal
 def gaussian_mutation_2(solution, mean=0, std_dev=0.1):
+    
     mutated_solution = solution.copy()
+    index1, index2 = random.sample(range(len(mutated_solution)), 2)    
+    g1 = round_to_nearest_multiple(random.gauss(mean, std_dev))
+    g2 = round_to_nearest_multiple(random.gauss(mean, std_dev))
     
-    # Seleccionar dos índices aleatorios distintos
-    index1, index2 = random.sample(range(len(mutated_solution)), 2)
-    
-    mutated_solution[index1] = exact_add(round_to_nearest_multiple(random.gauss(mean, std_dev)), mutated_solution[index1])
-    mutated_solution[index2] = exact_add(round_to_nearest_multiple(random.gauss(mean, std_dev)), mutated_solution[index2])
-    
-    # mutated_solution[index2] = exact_add(round(random.gauss(mean, std_dev), get_decimal_digits(STEP)), mutated_solution[index2])
+    mutated_solution[index1] = exact_add(g1, mutated_solution[index1])
+    mutated_solution[index2] = exact_add(g2, mutated_solution[index2])
         
     return mutated_solution
 
 # CROSSOVER. Reverse the subsequence between pos1 and pos2
 def simple_crossover(parent1, parent2):
+    print(parent1)
+    print(parent2)
     crossover_point = random.randint(1, len(parent1) - 1)
+    print(crossover_point)
+    
     child = parent1[:crossover_point] + parent2[crossover_point:]
+    print(child)
+    
     return child
