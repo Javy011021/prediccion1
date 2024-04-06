@@ -62,12 +62,6 @@ def gaussian_mutation_2(solution, mean=0, std_dev=0.1):
 
 # CROSSOVER. Reverse the subsequence between pos1 and pos2
 def simple_crossover(parent1, parent2):
-    print(parent1)
-    print(parent2)
-    crossover_point = random.randint(1, len(parent1) - 1)
-    print(crossover_point)
-    
+    crossover_point = random.randint(1, len(parent1) - 1)    
     child = parent1[:crossover_point] + parent2[crossover_point:]
-    print(child)
-    
     return child
