@@ -1,8 +1,9 @@
 import random
 from MHPython.operators import uniform_crossover
-from problem_operators import change_one, exact_add, random_value, reverse_mutation
+from problem_operators import MAX_VALUE, MIN_VALUE, STEP, change_one, exact_add, gaussian_mutation_2, random_value, reverse_mutation, simple_crossover
 
 ITERATIONS = 20
+
 DAYS = [18.38, 45.74, 47.88, 19.19, 32.81, 39.32, 20.88, 27.97, 34.59, 3.7]
 
 PAST_DAYS = [
@@ -17,9 +18,6 @@ PAST_DAYS = [
     [21.04, 41.36, 48.63, 25.3, 16.5],
     [12.77, 30.26, 3.46, 16.65, 13.98],
 ]
-STEP = 0.01
-MIN_VALUE=-1
-MAX_VALUE=1
 
 Presentation  = 'Rain Problem'
 def present_problem():
@@ -64,11 +62,13 @@ def heuristic_solution(iterations: int = 10000):
     return current_solution
 
 
-# the value of a random position is randomly changed
+# MUTATION
 def random_change(solution, MIN_VALUE=MIN_VALUE, MAX_VALUE=MAX_VALUE): 
     random_no = random.random()
-    if(random_no > 0.50):
+    if random_no > 0.67 :
         return change_one(solution, MIN_VALUE=MIN_VALUE, MAX_VALUE=MAX_VALUE)
+    elif random_no < 0.33:
+        return gaussian_mutation_2(solution)
     else:
         return reverse_mutation(solution)
 
@@ -77,12 +77,13 @@ def not_random_change(solution, interval=0.1):
     return changed_solution
 
 
-# each value is chosen randomly from any of the solutions
+# CROSSOVER
 def random_combination(solution1, solution2):
-    # random_no = random.random()
-    # if(random_no > 0.50):
-    return uniform_crossover(solution1, solution2)
-    # else:
+    random_no = random.random()
+    if(random_no > 0.50):
+        return uniform_crossover(solution1, solution2)
+    else:
+        return simple_crossover(solution1, solution2)
 
 #Test Functions
 def test ():
@@ -91,18 +92,6 @@ def test ():
     print(f'valores: {l}')
     print(f'error: {r}')
 
-def best_alt_solution():
-    solution = random_solution()
-    min_error = obj_function(solution)
-    for i in range(ITERATIONS):
-        actual_sol = random_solution()
-        error = obj_function(actual_sol)
-        if error < min_error:
-            min_error = error
-            solution = actual_sol
-    
-    print(f'solucion: {solution} \t error:{min_error}')
-    return [solution]
 
 # best_alt_solution()
 # test()
