@@ -31,7 +31,7 @@ TRESHOLD = 1                 # For TA and RRT
 TRIALS_BEFORE_RESTART = 50   # For Local Search, trials before restart the search
 '''
 def metaheuristic_test():
-    parameters = {'ECHO': False, 'MAX_TRIALS': 10000, 'OBJECTIVE_MAX':False, 'GENERATION_SIZE':100, 'BEST_REFERENCES':50, 'GENERATIONAL': False, 'RUNS':20}
+    parameters = {'ECHO': False, 'MAX_TRIALS': 10000, 'OBJECTIVE_MAX':False, 'GENERATION_SIZE':100, 'BEST_REFERENCES':50, 'GENERATIONAL': False, 'RUNS':10}
     set_parameters(parameters)
 
     print('\nExecute Random Search')
