@@ -63,6 +63,9 @@ def metaheuristic_test():
     print('\nSolution obtained by Evolution Strategy')
     print(solES)
 
+    print('\n---------------------------------------------------------------------------------------------\n')
+    print('Execute Heuristic')
+    solH = heuristic_solution()
 
     print('\n\n')
     print('Compare the results of the four search procedures')
@@ -71,5 +74,6 @@ def metaheuristic_test():
     print('HC:',solHC, 'with evalution',obj_function(solHC))
     print('GA:', solGA, 'with evalution',obj_function(solGA))
     print('ES:', solES, 'with evalution',obj_function(solES))
+    print('Heuristic:', solH, 'with evalution',obj_function(solH))
     
 metaheuristic_test()
